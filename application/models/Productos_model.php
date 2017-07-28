@@ -18,7 +18,7 @@ class Productos_model extends CI_Model {
             'CodigoDeBarras' => $this->input->post('CodigoDeBarras'),
             'minimoStock' => $this->input->post('minimoStock'),
             'MaximoStock' => $this->input->post('MaximoStock'),
-            'FechaRegistro'=> time(),
+   
             'Existencias' => $this->input->post('Existencias'),
             'Subcategoria_idSubcategoria' => 4,
             'Estados_idEstados' => 1,

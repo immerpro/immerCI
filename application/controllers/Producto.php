@@ -17,7 +17,6 @@ class Producto extends CI_Controller {
         $this->load->view('templates/header',$data);
         $this->load->view('templates/menuAdmin');
         $this->load->view('productos/index', $data);
-        $this->load->view('templates/js');
         $this->load->view('templates/footer');
     }
 
@@ -34,7 +33,6 @@ class Producto extends CI_Controller {
             $this->load->view('templates/header');
             $this->load->view('templates/menuAdmin');
             $this->load->view('productos/crear');
-            $this->load->view('templates/js');
             $this->load->view('templates/footer');
         } else {
             $this->productos_model->agregarProducto();
@@ -42,7 +40,6 @@ class Producto extends CI_Controller {
             $this->load->view('templates/header');
             $this->load->view('templates/menuAdmin');
             $this->load->view('productos/crear',$data);
-            $this->load->view('templates/js');
             $this->load->view('templates/footer');
         }
     }

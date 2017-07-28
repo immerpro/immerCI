@@ -26,7 +26,7 @@ class Categoria_model extends CI_Model {
         $categoria = array(
 
         'NombreCategoria' => $this->input->post('NombreCategoria'),
-        'FechaCategoria' => date("Y-m-d H:i:s") 
+        'detalles' => $this->input->post('txtdetalle')
 
 
         );
