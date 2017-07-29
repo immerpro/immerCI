@@ -16,6 +16,8 @@ class Categoria extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('categoria_model');
+        $this->load->model('subcategoria_model');
+        
         $this->load->helper('url_helper');
     }
         public function index() {
@@ -31,13 +33,15 @@ class Categoria extends CI_Controller {
     }
     
     public function InCategoria(){
+        $data['categorias'] = $this->categoria_model->obtenerCategorias();
+        $data['titulo'] = " crear categoria";
         $data['Mensaje'] = "Categoria creada correctamente";
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('NombreCategoria', 'NombreCategoria', 'required');
         
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header');
+            $this->load->view('templates/header',$data);
             $this->load->view('templates/menuAdmin');
             $this->load->view('Categoria/INCategoria');
             $this->load->view('templates/js');
@@ -45,12 +49,22 @@ class Categoria extends CI_Controller {
         } else {
             $this->categoria_model->ingressarCategoria();
             
-            $this->load->view('templates/header');
+            $this->load->view('templates/header',$data);
             $this->load->view('templates/menuAdmin');
             $this->load->view('Categoria/INCategoria',$data);
             $this->load->view('templates/js');
             $this->load->view('templates/footer');
         }
+        
+    }
+    public function ver($id) {
+        $data['categorias'] = $this->subcategoria_model->Versub($id);
+        $data['titulo'] = " ver subcategoria";
+     $this->load->view('templates/header',$data);
+            $this->load->view('templates/menuAdmin');
+            $this->load->view('Categoria/Ver');
+            $this->load->view('templates/js');
+            $this->load->view('templates/footer');
         
     }
     
