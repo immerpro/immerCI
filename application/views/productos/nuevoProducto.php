@@ -19,33 +19,52 @@
 
         <?php echo form_open('producto/nuevoProducto'); ?>
 
-        <div class="row">
+        <div class="row" data-parsley-validate>
 
             <div class="col-6"> 
                 <div class="md-form">
                     <input type="text" id="form1" class="form-control" name="txtNombProd">
                     <label for="form1" >Nombre Producto</label>
                 </div>
-                <label for="DescripcionProducto" >Descripcion</label>
-                <textarea name="DescripcionProducto" class="form-control" required="required"></textarea><br />
+                <div class="md-textarea">
+                    <label for="DescripcionProducto" >Descripcion</label>
+                    <textarea name="DescripcionProducto" 
+                              class="form-control" 
+                              data-parsley-required="true" 
+                              data-parsley-trigger="keyup" 
+                        data-parsley-required-message="el campo no debe estar vacio">
+                                  
+                    </textarea><br />  
+                </div>
+
 
                 <div class="md-form">
                     <input type="text" name="CodigoDeBarras" id="CodigoDeBarras" class="form-control" required="required"/><br />        
-
                     <label for="CodigoDeBarras" >Codigo de barras</label>
                 </div>
+                <div class="md-form">
+                    <label for="cantidad" >Cantidad del Producto</label>
+                    <input type="text" name="nbCantidadPro" class="form-control"  id="cantidad" required data-parsley-type="number" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" data-parsley-number-message="debe ingresar numeros"/><br /> 
+
+                </div>
+
+
             </div>    
             <div class="col-6">
+                <div class="md-form">
+                    <label for="minimo" >minimoStock</label>
+                    <input type="number" name="minimoStock"  id="minimo" class="form-control" required="required" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio"/><br />
 
-                <label for="minimoStock" >minimoStock</label>
-                <input type="number" name="minimoStock" class="form-control" required="required"/><br />
+                </div>
+                <div class="md-form">
+                    <label for="Maximo" >MaximoStock</label>
+                    <input type="number" name="MaximoStock" id="Maximo" class="form-control" required="required" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio"/><br />
 
-                <label for="MaximoStock" >MaximoStock</label>
-                <input type="number" name="MaximoStock" class="form-control" required="required"/><br />
-
-                <label for="Existencias" >Existencias</label>
-                <input type="text" name="Existencias" class="form-control" required="required"/><br />
-
+                </div>
+                <div class="md-form">
+                    <label for="exist" >Existencias</label>
+                    <input type="text" name="Existencias"  id="exist" class="form-control" required data-parsley-type="integer" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" data-parsley-integer-message="debe ingresar numeros"/><br />
+                </div>
                 <label for="subcategoria" >Subcategoria</label>
                 <select name="subcategoria" class="form-control" required="required">
                     <?php foreach ($subcategorias as $itemSubcategoria): ?>
@@ -53,6 +72,21 @@
                     <?php endforeach; ?>    
                 </select>
             </div>    
+
+        </div>
+        <!--codigo de barras 13 numeros-->
+        <div class="row">
+
+            <div class="col-6">
+                <label for="txtLote" >Lote</label>
+                <input type="text" name="txtLote" class="form-control" data-parsley-required="true" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio"/><br /> 
+
+            </div>
+            <div class="col-6">
+                <label for="fvencimiento" >Fecha de vencimiento</label>
+                <input type="date" name="fvencimiento" class="form-control" data-parsley-required="true" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio"/><br /> 
+
+            </div>
 
         </div>
 
@@ -66,4 +100,9 @@
 
     </section>
 
+    <script>
+$(document).ready(function(){
+ $('form').parsley();
+});
+</script>
 </div>

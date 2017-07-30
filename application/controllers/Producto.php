@@ -23,9 +23,8 @@ class Producto extends CI_Controller {
 //        $idProducto = $this->uri->segment(3);
         $data = array(
             'div1' => " <div id='pagina'>",
-            'table' =>  $initial_content ,
+            'table' => $initial_content,
             'titulo' => "producto"
-            
         );
 //
 //        // cargar la vista
@@ -38,8 +37,8 @@ class Producto extends CI_Controller {
     public function pagina($numPag = 0) {
         //hacemos la configuración de la librería jquery_pagination
         $config['base_url'] = base_url('producto/pagina/');
-        
-       
+
+
         $config['div'] = '#pagina'; //asignamos un id al contenedor general
 
         $config['anchor_class'] = 'page-link'; //asignamos una clase a los links para maquetar
@@ -61,47 +60,35 @@ class Producto extends CI_Controller {
 
         //creamos la cabecera de nuestra tabla con los campos que necesitemos
         $template = array(
-        'table_open'            => '<table class="table table-striped table-bordered table-hover table-responsive">',
+            'table_open' => '<table class="table table-striped table-bordered table-hover table-responsive">',
+            'thead_open' => '<thead class="thead-inverse">',
+            'thead_close' => '</thead>',
+            'heading_row_start' => '<tr>',
+            'heading_row_end' => '</tr>',
+            'heading_cell_start' => '<th>',
+            'heading_cell_end' => '</th>',
+            'tbody_open' => '<tbody>',
+            'tbody_close' => '</tbody>',
+            'row_start' => '<tr>',
+            'row_end' => '</tr>',
+            'cell_start' => '<td>',
+            'cell_end' => '</td>',
+            'row_alt_start' => '<tr>',
+            'row_alt_end' => '</tr>',
+            'cell_alt_start' => '<td>',
+            'cell_alt_end' => '</td>',
+            'table_close' => '</table>'
+        );
 
-        'thead_open'            => '<thead class="thead-inverse">',
-        'thead_close'           => '</thead>',
-
-        'heading_row_start'     => '<tr>',
-        'heading_row_end'       => '</tr>',
-        'heading_cell_start'    => '<th>',
-        'heading_cell_end'      => '</th>',
-
-        'tbody_open'            => '<tbody>',
-        'tbody_close'           => '</tbody>',
-
-        'row_start'             => '<tr>',
-        'row_end'               => '</tr>',
-        'cell_start'            => '<td>',
-        'cell_end'              => '</td>',
-
-        'row_alt_start'         => '<tr>',
-        'row_alt_end'           => '</tr>',
-        'cell_alt_start'        => '<td>',
-        'cell_alt_end'          => '</td>',
-
-        'table_close'           => '</table>'
-);
-
-$this->table->set_template($template);
-        $this->table->set_heading('Descripción Producto','Nombre Producto','Minimo Stock', 'Maximo Stock', 'Existencias', 'Acciones');
+        $this->table->set_template($template);
+        $this->table->set_heading('Descripción Producto', 'Nombre Producto', 'Minimo Stock', 'Maximo Stock', 'Existencias', 'Acciones');
         foreach ($this->productos_model->paginarProducto($config['per_page'], $numPag)as $productos_item) {
-                  $this->table->add_row(
-                          $productos_item['DescripcionProducto'],
-                          $productos_item['NombreProducto'], 
-                          $productos_item['minimoStock'],
-                          $productos_item['MaximoStock'],
-                          $productos_item['Existencias'],
-                          '<a href='.base_url().'producto/editar/'.$productos_item['idProducto'].'><button class="btn btn-tw btn btn-info"><strong>Modificar</strong></button></a>'
-                          . nbs(3).'<a href='.base_url().'producto/inactivar/'.$productos_item['idProducto'].' class="btn btn-danger inactivar_producto">Inactivar</a>');
-             
+            $this->table->add_row(
+                    $productos_item['DescripcionProducto'], $productos_item['NombreProducto'], $productos_item['minimoStock'], $productos_item['MaximoStock'], $productos_item['Existencias'], '<a href=' . base_url() . 'producto/editar/' . $productos_item['idProducto'] . '><button class="btn btn-tw btn btn-info"><strong>Modificar</strong></button></a>'
+                    . nbs(3) . '<a href=' . base_url() . 'producto/inactivar/' . $productos_item['idProducto'] . ' class="btn btn-danger inactivar_producto">Inactivar</a>');
         }
-                //cargamos la paginación con los links
-        $html = $this->table->generate().
+        //cargamos la paginación con los links
+        $html = $this->table->generate() .
                 $this->jquery_pagination->create_links();
 
         echo $html;
@@ -119,18 +106,28 @@ $this->table->set_template($template);
         /* asigno reglas de validacion 1parametro=> name del campo del formulario 
          * 2parametro=> titulo validacion 
           3parametro restricciones */
-        $this->form_validation->set_rules('DescripcionProducto', 'Descripción', 'required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('txtNombProd', ' nombre Producto', 'required|alpha_numeric_spaces');
-        $this->form_validation->set_rules('CodigoDeBarras', 'Codigo de barras', 'required|integer');
+        $this->form_validation->set_rules('DescripcionProducto', 'Descripción', 'required');
+        $this->form_validation->set_rules('txtNombProd', ' nombre Producto', 'required|alpha_numeric_spaces|is_unique[producto.NombreProducto]');
+        $this->form_validation->set_rules('CodigoDeBarras', 'Codigo de barras', 'required|integer|min_length[13]');
         $this->form_validation->set_rules('minimoStock', 'minimo Stock', 'required|numeric');
         $this->form_validation->set_rules('MaximoStock', 'maximo Stock', 'required|numeric');
         $this->form_validation->set_rules('Existencias', 'existencias', 'required|numeric');
+
+        // validaciones para el detalle de producto 
+        $this->form_validation->set_rules('nbCantidadPro', 'Cantidad', 'required|numeric');
+        $this->form_validation->set_rules('txtLote', ' nombre Producto', 'required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('fvencimiento', 'Fecha de Vencimiento', 'required');
+// FIN VALIDACION DETALLE
         // asignar mensajes
         // %s es el nombre del campo que ha fallado
         $this->form_validation->set_message('required', 'El campo %s es obligatorio');
         $this->form_validation->set_message('alpha_numeric_spaces', 'Ingrese numeros o letras en el  campo %s ');
         $this->form_validation->set_message('numeric', 'Ingrese numeros en el campo %s ');
         $this->form_validation->set_message('integer', 'Ingrese numeros en el campo %s ');
+        $this->form_validation->set_message('is_unique', 'El nombre ya existe por favor ingrese un nombre diferente ');
+        $this->form_validation->set_message('min_length', 'El campo %s debe tener 13 numeros');
+
+
 
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('templates/header', $data);
@@ -140,11 +137,27 @@ $this->table->set_template($template);
         } else {
             // llamo al metodo para agregar productos
             $ingresoNuevoProducto = $this->productos_model->agregarProducto();
+            // llamo al metodo para ingresar el detalle del producto
+            // le paso los valores para ser ingresados
+            $valores_para_detalle = array('CantidadProducto'=>$this->input->post('nbCantidadPro'),
+                                          'lote'=>$this->input->post('txtLote'),
+                                          'Producto_idProducto'=>5,
+                                          'fechavenc'=> strtotime($this->input->post('fvencimiento'))
+                    
+                );
+                           $detalle = $this->detalle_model->ingresarDetalle($valores_para_detalle);
+
             if ($ingresoNuevoProducto) {
                 //Sesion de una sola ejecución
                 $this->session->set_flashdata('correcto', 'producto creado correctamente');
             } else {
                 $this->session->set_flashdata('incorrecto', ' El producto no  esta  creado');
+            }
+            if ($detalle) {
+                echo "detalle ingresado";
+                
+            }else{
+                echo "no se ingreso el detalle";
             }
             $this->load->view('templates/header', $data);
             $this->load->view('templates/menuAdmin');
