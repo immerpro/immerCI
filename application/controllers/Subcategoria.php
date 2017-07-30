@@ -7,48 +7,49 @@
  */
 
 /**
- * Description of Categoria
+ * Description of SubCategoria
  *
  * @author User
  */
-class Categoria extends CI_Controller {
+class SubCategoria extends CI_Controller {
     //put your code here
     public function __construct() {
         parent::__construct();
+       
         $this->load->model('categoria_model');
-     
+       
     }
         public function index() {
-        // usamos la clase Categoria y llamamos al metodo que obtiene todos los categorias
-        $data['categorias'] = $this->categoria_model->obtenerCategorias();
-        $data['titulo'] = "categoria";
+        // usamos la clase SubCategoria y llamamos al metodo que obtiene todas las Subcategorias
+        $data['Subcategorias'] = $this->subcategoria_model->obtenerSubCategorias();
+        $data['titulo'] = "Subcategoria";
         // cargar la vista
         $this->load->view('templates/header',$data);
         $this->load->view('templates/menuAdmin');
-        $this->load->view('Categoria/index', $data);
+        $this->load->view('SubCategoria/index', $data);
         $this->load->view('templates/footer');
     }
     
-    public function InCategoria(){
+    public function SubInCategoria(){
+        $data['titulo'] = "Ingresar Subcategoria";
+        $data['Mensaje'] = "SubCategoria creada correctamente";
         $data['categorias'] = $this->categoria_model->obtenerCategorias();
-        $data['titulo'] = " crear categoria";
-        $data['Mensaje'] = "Categoria creada correctamente";
+        
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('NombreCategoria', 'NombreCategoria', 'required');
+        $this->form_validation->set_rules('NombreSubCategoria', 'FechaSubCategoria', 'required');
         
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('templates/header',$data);
             $this->load->view('templates/menuAdmin');
-            $this->load->view('Categoria/INCategoria');
-            
+            $this->load->view('SubCategoria/SubINCategoria');
             $this->load->view('templates/footer');
         } else {
-            $this->categoria_model->ingressarCategoria();
+            $this->subcategoria_model->ingressarSubCategoria();
             
             $this->load->view('templates/header',$data);
             $this->load->view('templates/menuAdmin');
-            $this->load->view('Categoria/INCategoria',$data);
+            $this->load->view('SubCategoria/SubINCategoria',$data);
             $this->load->view('templates/footer');
         }
         
