@@ -39,7 +39,7 @@ class Categoria_model extends CI_Model {
             return FALSE;
         }
     }
-     public function Actualizarcategoria($idCategoria, $data) {
+     public function Actualizacategoria($idCategoria, $data) {
         $this->db->where('idCategoria', $idCategoria);
         $this->db->update('categoria', $data);
     }

@@ -102,7 +102,7 @@ class Categoria extends CI_Controller {
                 'Nombre' => $NombreCategoria,
                 'Detalles' => $detalles,
                 
-                'Categoria' => $this->categoria_model->obtenerCategorias()
+              
             );
         } else {
             $data = '';
@@ -117,13 +117,40 @@ class Categoria extends CI_Controller {
        public function CategoriaActualizada() {
         $id = $this->uri->segment(3);
         $categoria_a_modificar = array(
+            'idCategoria'=>$id,
             'Nombrecategoria' => $this->input->post('NombreCategoria'),
-            'detalles' => $this->input->post('detalles'),
+            'detalles' => $this->input->post('txtdetalle')
             
-            'Subcategoria_idSubcategoria' => $this->input->post('Categoria'),
+          
         );
-        $this->categoria_model->Actualizacategoria($id, $categoria_a_modificar);
+       $act = $this->categoria_model->Actualizacategoria($id, $categoria_a_modificar);
+        
+        
+            if ($act == true) {
+                $this->session->set_flashdata('correcto', 'La categoria fue actualizada correctamente');
+            } else {
+                $this->session->set_flashdata('incorrecto', 'La categoria no se pudo actualizada correctamente');
+            }
+        
+        
         redirect('Categoria');
     }
+    
+     public function inactivar($id) {
+        /* $mostrarNombre = $this->productos_model->obtener_nombre($id);
+          foreach ($mostrarNombre->result() as $fila) {
+          $nombreProducto = $fila->NombreProducto;
+          }
+          $info_modal = array(
+          'id' => $id,
+          'titulo_h1' => "producto a inactivar",
+          'titulo' => "modal",
+          'nombrePro' => $nombreProducto
+          );
+         */
+        $inactivocategoria = $this->categoria_model->inactivarcategoria($id);
+        redirect('categoria');
+    }
+
     }
 
