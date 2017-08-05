@@ -21,17 +21,42 @@ class Categoria_model extends CI_Model {
 
     //ingresar categorias
     public function ingressarCategoria() {
-
         $this->load->helper('url');
         $categoria = array(
-
-        'NombreCategoria' => $this->input->post('NombreCategoria'),
-        'FechaCategoria' => date("Y-m-d H:i:s") 
-
-
+            'NombreCategoria' => $this->input->post('NombreCategoria'),
+            'detalles' => $this->input->post('txtdetalle')
         );
-        
+
         return $this->db->insert('categoria', $categoria);
+    }
+
+    public function nombrecategoria($id) {
+
+
+        $this->db->select('NombreCategoria');
+        $this->db->from('categoria');
+        $this->db->where('idCategoria', $id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function Actualizacategoria($idCategoria, $data) {
+        $this->db->where('idCategoria', $idCategoria);
+        $this->db->update('categoria', $data);
+    }
+
+    public function obtener_categoria_a_modificar($idCategoria) {
+        $this->db->where('idCategoria', $idCategoria);
+        $query = $this->db->get('categoria');
+        if ($query->num_rows() > 0) {
+            return $query;
+        } else {
+            return FALSE;
+        }
     }
 
 }
