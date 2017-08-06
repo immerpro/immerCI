@@ -6,19 +6,18 @@
 
             <!--First column-->
             <div class="col-md-6">
-            <?php
+                <?php
                 $propiedad_img = array(
                     'src' => 'public/img/immerproLogo.png',
                     'alt' => 'immerpro',
                     'class' => 'animated fadeIn mb-2',
                     'title' => 'logo',
-                    'width'=>'500px',
-                   
+                    'width' => '500px',
                 );
 
                 echo img($propiedad_img);
                 ?>
-               
+
             </div>
             <!--/.First column-->
 
@@ -26,10 +25,10 @@
             <div class="col-md-6">
                 <h5 class="title">SIGUENOS EN:</h5>
                 <ul>
-                    <button type="button" class="btn btn-fb btn btn-primary"><i class="fa fa-facebook left"></i> Facebook</button>
-                    <button type="button" class="btn btn-tw btn btn-info"><i class="fa fa-twitter left"></i> Twitter</button>
-                    <button type="button" class="btn btn-gplus btn btn-warning"><i class="fa fa-google-plus left"></i> Google +</button>
-                    <button type="button" class="btn btn-yt btn btn-danger"><i class="fa fa-youtube left"></i> Youtube</button>
+                    <a href="https://www.facebook.com/profile.php?id=100017326595591" target="_blank"><button type="button" class="btn btn-fb btn btn-primary"><i class="fa fa-facebook left"></i> Facebook</button></a>  
+                   <a href="https://twitter.com/immerpro" target="_blank"><button type="button" class="btn btn-tw btn btn-info"><i class="fa fa-twitter left"></i> Twitter</button></a>  
+                    <a href="https://plus.google.com/u/0/107704821156580446351" target="_blank"><button type="button" class="btn btn-gplus btn btn-warning"><i class="fa fa-google-plus left"></i> Google +</button></a>
+                    <a href="https://www.youtube.com/channel/UC0UYz7Hd4MCww0bFkE1qLlg" target="_blank"><button type="button" class="btn btn-yt btn btn-danger"><i class="fa fa-youtube left"></i> Youtube</button></a>
                 </ul>
             </div>
             <!--/.Second column-->
@@ -50,28 +49,28 @@
 
 <!--/.Footer-->
 
-    <!-- /Start your project here-->
+<!-- /Start your project here-->
 
-    <!-- SCRIPTS -->
-    <!-- JQuery -->
-    <script type="text/javascript" src="<?PHP  echo base_url()?>public/js/jquery-3.1.1.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="<?PHP  echo base_url()?>public/js/tether.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="<?PHP  echo base_url()?>public/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="<?PHP  echo base_url()?>public/js/mdb.min.js"></script>
+<!-- SCRIPTS -->
+<!-- JQuery -->
+
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="<?PHP echo base_url() ?>public/js/tether.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="<?PHP echo base_url() ?>public/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="<?PHP echo base_url() ?>public/js/mdb.min.js"></script>
 
 <script type="text/javascript">
-   $(".inactivar_producto").each(function() {
-      var href = $(this).attr('href');
-      $(this).attr('href', 'javascript:void(0)');
-      $(this).click(function() {
-         if (confirm("¿Seguro desea inactivar este producto. El producto debe tener existencias menores o iguales a 12 Si no es asi el producto no se inactivara")) {
-            location.href = href;
-         }
-      });
-   });
+    $(".inactivar_producto").each(function () {
+        var href = $(this).attr('href');
+        $(this).attr('href', 'javascript:void(0)');
+        $(this).click(function () {
+            if (confirm("¿Seguro desea inactivar este producto. El producto debe tener existencias menores o iguales a 12 Si no es asi el producto no se inactivara")) {
+                location.href = href;
+            }
+        });
+    });
 </script>
 </body>
 
