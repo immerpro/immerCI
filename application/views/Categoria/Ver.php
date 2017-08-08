@@ -1,4 +1,3 @@
-
 <div class="container" >
     <div class="flex-first ">
         <span class="badge badge-primary">
@@ -13,6 +12,7 @@
         <th>Nombre SubCategoria</th>
         <th>Detalle Subcategoria</th>
         <th>Nombre Categoria</th>
+        <th>Opciones</th>
         
     </tr>
     <tr>
@@ -26,6 +26,9 @@
                 echo $Subcategoria_item['NombreCategoria'];
                 echo br(3);
                 ?></td>
+           <td> <a class="teal-text"  href=" <?php echo base_url().'SubCategoria/editarSub/'.$Subcategoria_item['idSubcategoria']?>"><button type="button" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
+               <button type="button" class="btn btn-danger"><i class="fa fa-remove" aria-hidden="true"></i></button>
+           </td>
             
 
         </tr>
@@ -33,6 +36,4 @@
 <?php endforeach; ?>   
 
 </table>
-
-
 

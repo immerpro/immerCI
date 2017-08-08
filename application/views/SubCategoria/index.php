@@ -10,7 +10,8 @@
 <table class="table table-striped">
     <tr>
         <th>Nombre SubCategoria</th>
-        <th>Fecha SubCategoria</th>
+        <th>Detalle SubCategoria</th>
+        
         
     </tr>
     <tr>
@@ -29,5 +30,6 @@
 
 </table>
         </section>
-</div>
+
+
 

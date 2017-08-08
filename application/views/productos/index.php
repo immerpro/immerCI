@@ -1,32 +1,24 @@
- <div class="container" >
-        <?php echo date("d")."-".date("m")."-".date("Y"); ?>
-        <section class="section">
+<div class="container" >
+    <section class="section">
+        <div style="height: 5vh"></div> 
         <p class="display-4 orange-text flex-center">Listado de Productos</p>
-<table class="table table-striped">
-    <tr>
-        <th>Nombre Producto</th>
-        <th>Descripcion Producto</th>
-        <th>Minimo Stock</th>
-        <th>Existencias</th>
-    </tr>
-    <tr>
-        <?php foreach ($productos as $productos_item): ?>
-            <td><?php echo $productos_item['NombreProducto']; ?></td>
-            <td><?php
-                echo $productos_item['DescripcionProducto'];
-                echo br(3);
-                ?></td>
-            <td> <?php
-                echo $productos_item['minimoStock'];
-                echo br(3);
-                ?></td>
-            <td><?php echo $productos_item['Existencias'];
-            echo br(3);
-            ?></td>
-
-        </tr>
-
-<?php endforeach; ?>   
-
-</table>
-
+        <div class="flex-center">
+            <div class="row">
+                <div class="col col-8">
+                    <div class="md-form">
+                        <input type="search" name="txtbuscar" id="buscar" required="required" class="form-control">
+                        <label for="buscar" class="badge badge-warning"><i class="fa fa-search"></i> busqueda</label>
+                    </div>  
+                </div>
+                <div class="col col-8">
+                    <select name="ddlfiltro" class="form-control">
+                        <option value="NombreProducto">Producto</option>   
+                        <option value="NombreSubCategoria">Subcategoria</option>   
+                    </select> 
+                    <button class="btn btn-orange" type="submit"><i class="fa fa-search"></i>  Buscar</button>
+                </div>
+            </div>
+        </div>
+        <?php echo $div1 . $table; ?>
+    </section>
+</div>

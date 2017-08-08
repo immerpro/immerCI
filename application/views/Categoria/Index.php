@@ -20,12 +20,12 @@
             </td>
               <td>
                   Mira <a class="orange-text" href=" <?php echo base_url().'Categoria/Ver/'.$categoria_item['idCategoria']?>" ><i class="fa fa-eye" onmouseover="Subcategoria"></i></a>
-             Agrega <a class="blue-text"><i class="fa fa-plus"></i></a>
+                  Agrega <a class="blue-text"  href=" <?php echo base_url().'Categoria/Agregar/'.$categoria_item['idCategoria']?>" ><i class="fa fa-plus"></i></a>
             </td>
             <td>
+               Modificar <a class="teal-text"  href=" <?php echo base_url().'Categoria/editar/'.$categoria_item['idCategoria']?>" ><i class="fa fa-pencil "></i></a>
                    
-               Modifica <a class="teal-text"><i class="fa fa-pencil"></i></a>
-               Elimina <a class="red-text"><i class="fa fa-times"></i></a>
+               Elimina <a class="red-text" href=" <?php echo base_url().'Categoria/modal/'.$categoria_item['idCategoria']?>"><i class="fa fa-times" ></i></a>
             </td>
            
             

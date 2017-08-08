@@ -1,39 +1,29 @@
 
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of SubCategoria_model
- *
- * @author User
- */
 class SubCategoria_model extends CI_Model {
-
     //put your code here
     public function obtenerSubCategorias() {
         $query = $this->db->get('subcategoria');
         return $query->result_array();
     }
-
     //ingresar Subcategorias
     public function ingressarSubCategoria() {
-
         $this->load->helper('url');
         $Subcategoria = array(
-
         'NombreSubCategoria' => $this->input->post('NombreSubCategoria'),
         'FechaSubCategoria' => date("Y-m-d H:i:s") 
-
-
         );
         
         return $this->db->insert('subcategoria', $Subcategoria);
     }
+    
+    public function InsertSubcategoria($NombreSubcategoria){
+        
+        return $this->db->insert('subcategoria', $NombreSubcategoria);  
+    }
+
+
     public function Versub($id) {
         
         $this->db->select('*');
@@ -43,6 +33,35 @@ class SubCategoria_model extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-
+    public function Insertar($data) {
+        $query = $this->db->get('subcategoria');
+        //los recorremos y los guardamos en un array 
+        foreach ($query->result() as $fila) {
+            $data[] = array(
+                'idSubcategoria' => $fila->idSubcategoria,
+                'NombreSubcategoria' => $fila->NombreSubcategoriae,
+                'detallesSub' => $fila->detallesSub,
+                'Categoria_idCategoria' => $fila->Categoria_idCategoria
+            );
+        }
+        //fuera del bucle hacemos la insercción de los datos con insert_batch	
+        $this->db->insert_batch('subcategoria', $data);
+    }
+    
+    public function modificar_subcategoria($idsubcategoria){
+        
+        $this->db->where('idSubcategoria', $idsubcategoria);
+        $query = $this->db->get('subcategoria');
+        if ($query->num_rows() > 0) {
+            return $query;
+        } else {
+            return FALSE;
+        }
+        
+    }
+    public function Actualizasubcategoria($IdSubCategoria, $datasub){
+        $this->db->where('idSubcategoria', $IdSubCategoria);
+        $this->db->update('subcategoria', $datasub);
+        
+    }
 }
-
