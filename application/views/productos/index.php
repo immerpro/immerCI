@@ -1,6 +1,6 @@
 <div class="container" >
-
     <section class="section">
+        <div style="height: 5vh"></div> 
         <p class="display-4 orange-text flex-center">Listado de Productos</p>
         <div class="flex-center">
             <div class="row">
@@ -14,17 +14,13 @@
                     <select name="ddlfiltro" class="form-control">
                         <option value="NombreProducto">Producto</option>   
                         <option value="NombreSubCategoria">Subcategoria</option>   
-
                     </select> 
-                    <button class="btn btn-orange" type="submit"><i class="fa fa-search"></i>  Buscar</button>
+                    <button class="btn btn-orange " type="submit"><i class="fa fa-search"></i>  Buscar</button>
                 </div>
-
             </div>
-
-
         </div>
         <?php echo $div1 . $table; ?>
+    
 
     </section>
-
 </div>

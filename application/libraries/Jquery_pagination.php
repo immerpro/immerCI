@@ -186,7 +186,7 @@ class Jquery_pagination{
          else
             $info .= $this->total_rows;
 
-         $info .= ' de ' . $this->total_rows.'<br />';
+         $info .= ' de ' . $this->total_rows.'';
 
          $output .= $info;
       }
@@ -258,12 +258,12 @@ class Jquery_pagination{
 	function getAJAXlink( $count, $text) {
 
         if( $this->div == '')
-            return '<a href="'. $this->anchor_class . ' ' . $this->base_url . $count . '">'. $text .'</a>';
+            return '<a  href="'. $this->anchor_class . ' ' . $this->base_url . $count . '">'. $text .'</a>';
             
         if( $this->additional_param == '' )
         	$this->additional_param = "{'t' : 't'}";
 
-		return "<a href=\"#\"
+		return " <a  href=\"#\"
 		         " . $this->anchor_class . "
 					onclick=\"$.post('". $this->base_url . $count ."', ". $this->additional_param .", function(data){
 					$('". $this->div . "').html(data);" . $this->js_rebind ."; }); return false;\">"

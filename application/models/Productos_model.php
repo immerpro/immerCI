@@ -27,6 +27,20 @@ class Productos_model extends CI_Model {
         return $this->db->insert('producto', $data);
     }
 
+    public function registrarProductoDetalle($descrip, $nombpro, $codb, $min, $max, $exist, $subc, $cantp, $lote, $fvencida) {
+        $ingreso_producto_detalle = $this->db->query("CALL SPIngresoDetalProducto('$descrip',"
+                . "'$nombpro',"
+                . "'$codb',"
+                . "'$min',"
+                . "'$max',"
+                . "'$exist',"
+                . "'$subc',"
+                . "'$cantp',"
+                . "'$lote',"
+                . "'$fvencida')");
+        return $ingreso_producto_detalle;
+    }
+
     // obtener productos para modificar
 
     public function obtener_productos_a_modificar($idProducto) {
@@ -46,7 +60,7 @@ class Productos_model extends CI_Model {
         $this->db->where('idProducto', $idProducto);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
-            return $query;
+            return $query->row();
         } else {
             return FALSE;
         }
@@ -62,7 +76,7 @@ class Productos_model extends CI_Model {
     public function inactivarProducto($idProducto) {
         $this->db->set('Estados_idEstados', 2, FALSE);
         $this->db->where('idProducto', $idProducto);
-        $this->db->where('Existencias <=', 12);
+        $this->db->where('Existencias <=', 6);
         $inactiva = $this->db->update('producto');
         return $inactiva;
     }
@@ -83,6 +97,28 @@ class Productos_model extends CI_Model {
 
             return $consulta->result_array();
         }
+    }
+
+    public function obtener_nombreSubcategoria($idSubCategoria) {
+        $this->db->select('NombreSubcategoria');
+        $this->db->from('subcategoria');
+        $this->db->where('idSubcategoria', $idSubCategoria);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function obtener_nombreCategoria($id) {
+        $this->db->select('*');
+        $this->db->from('subcategoria');
+        $this->db->join('categoria', 'Categoria.idCategoria = subcategoria.Categoria_idCategoria');
+        $this->db->where('subcategoria.Categoria_idCategoria',$id );
+        $query = $this->db->get();
+        return $query->row();
+        
     }
 
 }

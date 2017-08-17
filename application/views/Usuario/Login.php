@@ -1,15 +1,17 @@
-<font size="20" color="green">Iniciar sesión</font>
-<br>
-<br>
-<br>
- <div class="row">
+<div style="height: 5vh"></div>
+<div class="flex-center">
+    <p class=" h1 orange-text">Iniciar sesión</p>
+  </div>
+<div style="height: 5vh"></div>
+<?php echo form_open('usuario/ingresoUsuario'); ?>
+<center>
+     <div class="row">
             <div class="col-6 ">
-                <span class="alert-danger close"><?php echo validation_errors(); ?></span> 
+                <div class="alert-danger"><?php echo validation_errors(); ?></div> 
             </div>
 
         </div>
-<?php echo form_open('usuario/ingresoUsuario'); ?>
-<center>
+    
 <table cellpadding="20" cellspacing="20">
     <tr>
     <td><i class="fa fa-user fa-3x" aria-hidden="true" ></i></td>
@@ -17,7 +19,7 @@
 
             <div class="md-form">
                 <input type="hidden" name="token" value="<?=$token?>">
-                <input type="text" id="form1" class="form-control" name="txtusuario">
+                <input type="text" id="form1" class="form-control" name="txtusuario" required="">
 
             <label for="txtusuario"  class="">Usuario</label>
             </div>
@@ -28,20 +30,23 @@
         <td width="400" height="">
             
             <div class="md-form">
-                <input type="password" id="form1" class="form-control" name="txtpassword">
-            <label for="txtpassword" class="">Contraseña</label>
+                <input type="password" id="pass" class="form-control" name="txtpassword" required="">
+            <label for="pass" >Contraseña</label>
             </div>
         </td>
-        <td><button type="submit" class="btn btn-success">Ingresar</button></td>
+        <td><button type="submit" class="btn btn-orange waves-effect orange" name="btnLogin" ><i class='fa fa-send'> Ingresar</i></button></td>
 
     </tr>
    <?php if($this->session->flashdata('usuario_mal')):?>
-    <div class="alert alert-info"><?=$this->session->flashdata('usuario_mal')?></div> 
+    <div class="alert alert-success"><?=$this->session->flashdata('usuario_mal')?></div> 
    <?php endif;?>
     
 </table>
-
-<a href="Olvido su contraseña"><font style="text-decoration: underline;">Olvido su contraseña</font></a>
+    <table cellpadding="10">
+        <tr>
+            <td><a href="Olvido su contraseña"><font style="text-decoration: underline;">Olvido su contraseña</font></a></td>
+        </tr>
+    </table>
 
 
 </center>

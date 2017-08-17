@@ -10,14 +10,15 @@
 <table class="table table-striped">
     <tr>
         <th>Nombre SubCategoria</th>
-        <th>Fecha SubCategoria</th>
+        <th>Detalle SubCategoria</th>
+        
         
     </tr>
     <tr>
         <?php foreach ($Subcategorias as $Subcategoria_item): ?>
             <td><?php echo $Subcategoria_item['NombreSubcategoria']; ?></td>
             <td><?php
-                echo $Subcategoria_item['FechaSubcategoria'];
+                echo $Subcategoria_item['detallesSub'];
                 echo br(3);
                 ?></td>
            
@@ -28,6 +29,7 @@
 <?php endforeach; ?>   
 
 </table>
+        </section>
 
 
 
