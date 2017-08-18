@@ -1,10 +1,8 @@
+<div style="height: 5vh"></div>
 <div class="flex-center">
-   <font size="20" color="green">Iniciar sesión</font>
- 
-</div>
-<br>
-<br>
-<br>
+    <p class=" h1 orange-text">Iniciar sesión</p>
+  </div>
+<div style="height: 5vh"></div>
 <?php echo form_open('usuario/ingresoUsuario'); ?>
 <center>
      <div class="row">
@@ -32,11 +30,11 @@
         <td width="400" height="">
             
             <div class="md-form">
-                <input type="password" id="form1" class="form-control" name="txtpassword" required="">
-            <label for="txtpassword" class="">Contraseña</label>
+                <input type="password" id="pass" class="form-control" name="txtpassword" required="">
+            <label for="pass" >Contraseña</label>
             </div>
         </td>
-        <td><button type="submit" class="btn btn-success">Ingresar</button></td>
+        <td><button type="submit" class="btn btn-orange waves-effect orange" name="btnLogin" ><i class='fa fa-send'> Ingresar</i></button></td>
 
     </tr>
    <?php if($this->session->flashdata('usuario_mal')):?>

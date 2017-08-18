@@ -1,202 +1,219 @@
 <style>
     .imagencard{
-    width: 300px;
-    height: 500px;
-}
+        width: 350px;
+        height: 200px;
+    }
 </style>
-  <div style="height: 5vh"></div> 
-    <h1 class="h2-responsive orange-text text-center">Acerca</h1>
-   
-    <blockquote class="text-center blockquote">
-        <p>Immerpro es un proyecto web orientado al proceso de inventarios para minimercados realizado por aprendices del sena como proyecto de grado.</p>
+<div style="height: 5vh"></div> 
+<h1 class="h2-responsive orange-text text-center">Acerca</h1>
 
-    </blockquote>
-    <div>
-       
-       <h1 class="h2-responsive orange-text text-center">Caracteristicas</h1>
-        
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="thumbnail">
-                                <?php
-                                $propiedad_img = array(
-                                    'src' => 'public/img/ima.jpg',
-                                    'alt' => 'immerpro',
-                                    'class' => 'animated fadeIn mb-2 imagencard zoomIn',
-                                    'title' => 'logo',
-                                   
-                                    
-                                );
-                                echo img($propiedad_img);
-                                ?>
+<blockquote class="text-center blockquote">
+    <p>Immerpro es un proyecto web orientado al proceso de inventarios para minimercados realizado por aprendices del sena como proyecto de grado.</p>
 
-                                <div class="caption">
-                                    <h3>
-                                        1
-                                    </h3>
-                                    <p>
-                                        Gestiona los inventarios de manera segura
-                                    </p>
+</blockquote>
+<div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="thumbnail">
-                                 <?php
-                                $propiedad_img2 = array(
-                                    'src' => 'public/img/cream.jpg',
-                                    'alt' => 'immerpro',
-                                    'class' => 'animated fadeIn mb-2 imagencard',
-                                    'title' => 'logo',
-                                    
-                                    
-                                );
-                                echo img($propiedad_img2);
-                                ?>
-                                <div class="caption">
-                                    <h3>
-                                        2
-                                    </h3>
-                                    <p>
-                                        Agilidad en sus procesos 
-                                    </p>
+    <h1 class="h2-responsive orange-text text-center">Caracteristicas</h1>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="thumbnail">
-                                <?php
-                                $propiedad_img3 = array(
-                                    'src' => 'public/img/food.jpg',
-                                    'alt' => 'immerpro',
-                                    'class' => 'animated fadeIn mb-2 imagencard',
-                                    'title' => 'logo',
-                                    
-                                    
-                                );
-                                echo img($propiedad_img3);
-                                ?>
-                                <div class="caption">
-                                    <h3>
-                                        3
-                                    </h3>
-                                    <p>
-                                        Facil manejo y orientado al cliente 
-                                    </p>
+    <div class="container">
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <!--Carousel Wrapper-->
+        <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+            <!--Indicators-->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+                <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+            </ol>
+            <!--/.Indicators-->
+            <!--Slides-->
+            <div class="carousel-inner" role="listbox">
+                <!--First slide-->
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="<?PHP echo base_url(); ?>/public/img/market1.jpg" alt="First slide">
                 </div>
-            </div>      
+                <!--/First slide-->
+                <!--Second slide-->
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="<?PHP echo base_url(); ?>/public/img/market2.jpg" alt="Second slide">
+                </div>
+                <!--/Second slide-->
+                <!--Third slide-->
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="<?PHP echo base_url(); ?>/public/img/market3.jpg" alt="Third slide">
+                </div>
+                <!--/Third slide-->
+            </div>
+            <!--/.Slides-->
+            <!--Controls-->
+            <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            <!--/.Controls-->
         </div>
-       <div class=""></div>
-        <!--Section: Contact v.1-->
-        <section class="section mb-4">
+        <!--/.Carousel Wrapper-->
 
-            <!--Section heading-->
-            <h1 class="section-heading text-center orange-text">Contactanos</h1>
-            <!--Section sescription-->
+        <br>
 
 
-            <div class="row">
+        <div class="row">
+            <div class=" col-md-4">
+                <!--Card-->
+                <div class="card">
 
-                <!--First column-->
-                <div class="col-md-5">
 
-                    <!--Form with header-->
-                    <div class="card">
 
-                        <div class="card-block">
-                            <!--Header-->
-                            <div class="form-header mdb-color">
-                                <h3><i class="fa fa-envelope"></i> Estimado usuario</h3>
+                    <!--Card image-->
+                    <div class="view overlay hm-white-slight">
+                        <img  class="imagencard" src="<?PHP echo base_url(); ?>/public/img/ima.jpg">
+                        <a href="#">
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+
+                    <!--Card content-->
+                    <div class="card-body">
+                        <!--Title-->
+                        <h4 class="card-title">Card title</h4>
+                        <!--Text-->
+                        <p class="card-text">Facil manejo y orientado al cliente</p>
+                    </div>
+
+                </div> 
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+
+
+
+                    <!--Card image-->
+                    <div class="view overlay hm-white-slight">
+                        <img  class="imagencard" src="<?PHP echo base_url(); ?>/public/img/imgg.jpg">
+                        <a href="#">
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+
+                    <!--Card content-->
+                    <div class="card-body">
+                        <!--Title-->
+                        <h4 class="card-title">Card title</h4>
+                        <!--Text-->
+                        <p class="card-text">Gestiona los inventarios de manera segura</p>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+            <div class=" col-md-4">
+                <div class="card">
+
+
+
+                    <!--Card image-->
+                    <div class="view overlay hm-white-slight">
+                        <img  class="imagencard" src="<?PHP echo base_url(); ?>/public/img/iimg.jpg">
+                        <a href="#">
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+
+                    <!--Card content-->
+                    <div class="card-body">
+                        <!--Title-->
+                        <h4 class="card-title">Card title</h4>
+                        <!--Text-->
+                        <p class="card-text">Agilidad en sus procesos</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="thumbnail">
+
+
+            <!--Section: Contact v.1-->
+            <section class="section mb-4">
+                <br>
+                <!--Section heading-->
+                <h1 class="section-heading text-center orange-text">Contactanos</h1>
+
+                <!--Section sescription-->
+
+
+                <div class="row flex-center">
+                    <div class="col-md-6"></div>
+
+                    <!--First column-->
+                    <div class="col-md-6">
+
+
+                        <!--/Form with header-->
+
+                    </div>
+                    <!--/First column-->
+
+                    <!--Second column-->
+                    <div class="col-md-7">
+
+
+                        <!-- Contact form -->
+                        <form>
+
+
+
+                            <div class="md-form">
+                                <i class="fa fa-user prefix grey-text"></i>
+                                <input type="text" id="form3" class="form-control">
+                                <label for="form3">Tu nombre</label>
                             </div>
 
-                            <p>Ingresa todos tus datos y añade un comentario.</p>
-                            <br>
-
-                            <!--Body-->
                             <div class="md-form">
-                                <i class="fa fa-user prefix"></i>
-                                <input type="text" id="form3" class="form-control" name="txtName">
-                                <label for="form3">Su Nombre</label>
+                                <i class="fa fa-envelope prefix grey-text"></i>
+                                <input type="text" id="form2" class="form-control">
+                                <label for="form2">Tu email</label>
                             </div>
 
                             <div class="md-form">
-                                <i class="fa fa-envelope prefix"></i>
-                                <input type="text" id="form2" class="form-control" name="txtEmail">
-                                <label for="form2">Su email</label>
+                                <i class="fa fa-tag prefix grey-text"></i>
+                                <input type="text" id="form32" class="form-control">
+                                <label for="form34">Sujeto</label>
                             </div>
 
                             <div class="md-form">
-                                <i class="fa fa-tag prefix"></i>
-                                <input type="text" id="form32" class="form-control" name="txtAsunto">
-                                <label for="form32">Asunto</label>
-                            </div>
-
-                            <div class="md-form">
-                                <i class="fa fa-pencil prefix"></i>
-                                <textarea type="text" id="form8" class="md-textarea" name="txaMensaje"></textarea>
-                                <label for="form8">Mensaje</label>
+                                <i class="fa fa-pencil prefix grey-text"></i>
+                                <textarea type="text" id="form8" class="md-textarea" style="height: 100px"></textarea>
+                                <label for="form8">Su mensaje</label>
                             </div>
 
                             <div class="text-center">
-                                <button class="btn btn-tw btn btn-info">Enviar</button>
+                                <button class="btn btn-orange">Enviar <i class="fa fa-paper-plane-o ml-1"></i></button>
                             </div>
 
-                        </div>
+                        </form>
+                        <!-- Contact form -->
+
 
                     </div>
-                    <!--/Form with header-->
+                    <!--/Second column-->
 
                 </div>
-                <!--/First column-->
 
-                <!--Second column-->
-                <div class="col-md-7">
-
-                    <!--Google map-->
-                    <div >
-                        <?php
-                                $propiedad_img4 = array(
-                                    'src' => 'public/img/immerpro.png',
-                                    'alt' => 'immerpro',
-                                    'class' => 'animated fadeIn mb-2 imagencard flex-center mx-auto d-block',
-                                    'title' => 'logo',
-                                    
-                                    
-                                );
-                                echo img($propiedad_img4);
-                                ?>
-                    </div>
-
-                    <!--Buttons-->
-                    <div class="row text-center">
-
-                        <div class="col-md-4">
-                            <a class="btn-floating btn-small mdb-color"></a>
-                           
-                        </div>
-                        <div class="btn btn-tw btn btn-info">
-                            <a class="btn-floating btn-small mdb-color "><i class="fa fa-phone"></i></a>
-                            <p class="lead">imerpro</p>
-                            <p class="lead ">immerpro@gmail.com</p>
-                        </div>
-
-                    </div>
-
-                </div>
-                <!--/Second column-->
-
-            </div>
-
-        </section>
-        <!--/Section: Contact v.1-->
+            </section>
+            <!--/Section: Contact v.1-->
+        </div>
     </div>
+</div>

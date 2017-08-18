@@ -34,19 +34,19 @@ class SubCategoria extends CI_Controller {
     }
 
     public function SubInCategoria() {
-
-        $data['titulo'] = "Ingresar Subcategoria";
-        $data['Mensaje'] = "SubCategoria creada correctamente";
-        //$data['categorias'] = $this->categoria_model->obtenerCategorias();
-        $mostrarNombre = $this->categoria_model->nombrecategoria($this->uri->segment(3));
-        foreach ($mostrarNombre->result() as $fila) {
-            $NomCategoria = $fila->DescripcionProducto;
+         $mostrarNombre= $this->categoria_model->nombrecategoria($this->uri->segment(3));
+             foreach ($mostrarNombre as $fila) {
+            $nombreCategoria = $fila->NombreCategoria;
         }
-        $data['nombrecategoria'] = $NomCategoria;
+            $data=['titulo'=>'agregar subcategoria',
+                'codcategoria'=>$this->uri->segment(3),
+               'nombrecategoria'=>$nombreCategoria];
+
+        //$data['categorias'] = $this->categoria_model->obtenerCategorias();
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('NombreSubCategoria[]', 'subcategoria', 'required');
-        $this->form_validation->set_rules('detalSubCategoria[]', 'detalle subcategoria', 'required');
+        $this->form_validation->set_rules('NombreSubCategoria', 'subcategoria', 'required');
+        $this->form_validation->set_rules('detalSubCategoria', 'detalle subcategoria', 'required');
 
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('templates/header', $data);
@@ -57,7 +57,7 @@ class SubCategoria extends CI_Controller {
             $multiInsert = ['NombreSubcategoria' => $this->input->post('NombreSubcategoria'),
                 'detallesSub' => $this->input->post('detalSubCategoria'),
                 'Categoria_idCategoria' => $this->input->post('codigoCategoria'),
-                ''];
+                ];
 
             $this->subcategoria_model->InsertSubcategoria($multiInsert);
 
@@ -69,11 +69,8 @@ class SubCategoria extends CI_Controller {
     }
 
     public function editarSub() {
-        $mostrarNombre = $this->categoria_model->nombrecategoria($this->uri->segment(3));
-        foreach ($mostrarNombre->result() as $fila) {
-            $NomCategoria = $fila->DescripcionProducto;
-        }
-        $data['nombrecategoria'] = $NomCategoria;
+        
+       
         $dato['titulo'] = " Editar SubCategoria";
         $idSubCategoria = $this->uri->segment(3);
         $obtenerSubCategoria = $this->subcategoria_model->modificar_subcategoria($idSubCategoria);
@@ -86,11 +83,14 @@ class SubCategoria extends CI_Controller {
             foreach ($obtenerSubCategoria->result() as $fila) {
                 $NombreSubCategoria = $fila->NombreSubcategoria;
                 $detallesSub = $fila->detallesSub;
+                $codCategoria = $fila->Categoria_idCategoria;
+                
             }
             $data = array(
                 'idSub' => $idSubCategoria,
                 'NombreSub' => $NombreSubCategoria,
                 'DetallesSub' => $detallesSub,
+                'codCategoria'=>$codCategoria
             );
         } else {
             $data = '';
@@ -108,7 +108,7 @@ class SubCategoria extends CI_Controller {
         $subcategoria_a_modificar = array(
             'NombreSubcategoria' => $this->input->post('NombreSubcategoria'),
             'detallesSub' => $this->input->post('detalSubCategoria'),
-            'Categoria_idCategoria' => $this->input->post('codigoCategoria')
+            'Categoria_idCategoria' => $this->input->post('hdcodigoCategoria')
         );
         $act = $this->subcategoria_model->Actualizasubcategoria($idsub, $subcategoria_a_modificar);
 
@@ -120,7 +120,16 @@ class SubCategoria extends CI_Controller {
         }
 
 
-        redirect('Subcategoria');
+        redirect('productos');
+    }
+    
+    public function InactivarSub(){
+        
+        $idsub = $this->uri->segment(3);
+        $inactivasub = $this->subcategoria_model->inactivarSubcategoria($idsub);
+        
+        
+        
     }
 
 }

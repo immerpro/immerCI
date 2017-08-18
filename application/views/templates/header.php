@@ -17,9 +17,23 @@
         <?php echo link_tag('public/css/style.css'); ?>
         <script type="text/javascript" src="<?PHP echo base_url() ?>public/js/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="<?PHP echo base_url() ?>public/js/parsley.min.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url() ?>public/js/es.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url() ?>public/js/words.js"></script>
+        <script type="text/javascript" src="<?PHP echo base_url() ?>public/js/comparison.js"></script>
 
         <?php // echo link_tag('public/css/bootstrap-social/bootstrap-social.css'); ?>
-
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#categoria").change(function () {
+                    $("#categoria option:selected").each(function () {
+                        categoria = $('#categoria').val();
+                        $.post("http://localhost:82/ImmerPRO_CI/producto/asociarCategoria_a_subcategoria", { categoria: categoria}, function (data) {
+                            $("#subcatego").html(data);
+                        });
+                    });
+                })
+            });
+        </script>
     </head>
 
 

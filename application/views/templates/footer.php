@@ -55,23 +55,13 @@
 <!-- JQuery -->
 
 <!-- Bootstrap tooltips -->
-<script type="text/javascript" src="<?PHP echo base_url() ?>public/js/tether.min.js"></script>
+<script type="text/javascript" src="<?PHP echo base_url() ?>public/js/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="<?PHP echo base_url() ?>public/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="<?PHP echo base_url() ?>public/js/mdb.min.js"></script>
 
-<script type="text/javascript">
-    $(".inactivar_producto").each(function () {
-        var href = $(this).attr('href');
-        $(this).attr('href', 'javascript:void(0)');
-        $(this).click(function () {
-            if (confirm("¿Seguro desea inactivar este producto. El producto debe tener existencias menores o iguales a 12 Si no es asi el producto no se inactivara")) {
-                location.href = href;
-            }
-        });
-    });
-</script>
+
 </body>
 
 </html>

@@ -66,12 +66,12 @@ class Categoria extends CI_Controller {
 
         public function Agregar() {
             $mostrarNombre= $this->categoria_model->nombrecategoria($this->uri->segment(3));
-//             foreach ($mostrarNombre->result() as $fila) {
-//            $nombreCategoria = $fila->NombreCategoria;
-//        }
+             foreach ($mostrarNombre->result() as $fila) {
+            $nombreCategoria = $fila->NombreCategoria;
+        }
             $agr=['titulo'=>'agregarsubcategoria',
                 'codcategoria'=>$this->uri->segment(3),
-               'nombrecategoria'=>$mostrarNombre->NombreCategoria];
+               'nombrecategoria'=>$nombreCategoria];
 
             $this->load->view('templates/header', $agr);
             $this->load->view('templates/menuAdmin');

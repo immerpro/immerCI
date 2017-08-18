@@ -16,61 +16,79 @@
     </div>
 
     <div class="flex-center">
-        <p class="h1 orange-text" >TE ASESORARE MUY BIEN!</p>
+        <p class="h1 green-text" >TE ASESORARE MUY BIEN!</p>
     </div>
+    <div style="height: 5vh"></div>
+    <!-----------------MENU DE LA ADMINISTRACION----------->
+    <nav class="navbar navbar-expand-lg navbar-dark blue">
+        <?php $atributo = array('class' => 'navbar-brand'); ?>
+        <?= anchor('usuario/login', 'Immerpro', $atributo) ?>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><i class="fa fa-user"></i> Admin<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Perfil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cerrar Sesiòn</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        Categoría
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="<?php echo site_url('categoria/crear'); ?>">Nueva Categorìa</a>
+                        <a class="dropdown-item" href="<?php echo site_url('categoria'); ?>">Listar Categorìa</a>
 
-    ​<nav class="navbar navbar-toggleable-md navbar-dark orange">
-        <div class="container">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <?php $atributo = array('class' => 'navbar-brand'); ?>
-            <?= anchor('usuario/login', 'Immerpro', $atributo) ?>
-            <div class="collapse navbar-collapse" id="navbarNav1">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link"> <i class="fa fa-user"></i> Admin</a>
-                    </li>
-                    <li class="nav-item dropdown btn-group">
-                        <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categoría</a>
-                        <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="<?php echo site_url('categoria/crear'); ?>">Crear Categoría</a>
-                            <a class="dropdown-item" href="<?php echo site_url('categoria'); ?>">Listar Categoría</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        Producto
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="<?php echo site_url('productos/nuevoProducto'); ?>">Nuevo Producto</a>
+                        <a class="dropdown-item" href="<?php echo site_url('productos'); ?>">Consultar Producto</a>
 
-                        </div>
-                    </li>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        Proveedor
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="<?php echo site_url('proveedor/NuevoProveedor'); ?>">Crear Proveedor</a>
+                        <a class="dropdown-item" href="<?php echo site_url('proveedor'); ?>">Consultar Proveedor</a>
 
-                    <li class="nav-item dropdown btn-group">
-                        <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Producto</a>
-                        <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="<?php echo site_url('productos/nuevoProducto'); ?>">Crear Producto</a>
-                            <a class="dropdown-item" href="<?php echo site_url('productos'); ?>">Consultar Producto</a>
-
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown btn-group">
-                        <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Proveedor</a>
-                        <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="<?php echo site_url('proveedor/NuevoProveedor'); ?>">Crear Proveedor</a>
-                            <a class="dropdown-item" href="<?php echo site_url('proveedor'); ?>">Consultar Proveedor</a>
-
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown btn-group">
-                        <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inventario</a>
-                        <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="">Orden Entrada</a>
-                            <a class="dropdown-item" href=""> Consultar Orden Entrada</a>
-                            <a class="dropdown-item" href="">Orden Salida</a>
-                            <a class="dropdown-item" href="">Consultar Orden Salida</a>
-                            <a class="dropdown-item" href="">Notificaciones</a>
-                            <a class="dropdown-item" href="">Reporte</a>
-
-                        </div>
-                    </li>
-
-                </ul>
-
-            </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="inv" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        Inventario
+                    </a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="inv">
+                        <a class="dropdown-item " href="">Orden Entrada</a>
+                        <a class="dropdown-item " href=""> Consultar Orden Entrada</a>
+                        <a class="dropdown-item" href="<?php echo site_url('RegistrarOrdenSalida'); ?>">Orden Salida</a>
+                        <a class="dropdown-item" href="<?php echo site_url('inventario/OrdenSalida'); ?>">Consultar Orden Salida</a>
+                        <a class="dropdown-item" href="<?php echo site_url('inventario'); ?>">Notificaciones</a>
+                        <a class="dropdown-item" href="">Reporte</a>
+                        <a class="dropdown-item" href="<?php echo site_url('reestablecer'); ?>">Restauraciòn Datos</a>
+                    </div>
+                </li>
+                 
+            </ul>
         </div>
     </nav>
+    <!-------------FIN NAVEGACION---------------->
+    ​

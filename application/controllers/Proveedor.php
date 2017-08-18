@@ -135,6 +135,36 @@ public function NuevoProveedor(){
         $this->Proveedor_model->EditarProveedor($id, $proveedorActualizar);
         redirect('proveedor');
     }
-           
+    
+    
+      public function modal() {
+        $idProveedor = $this->uri->segment(3);
+        $mostrarNombre = $this->Proveedor_model->obtener_nombre_proveedor($idProveedor);
+
+        $info_modal = array(
+            'id' => $idProveedor,
+            'titulo_h1' => "Proveedor a inactivar",
+            'titulo' => "modal",
+            'nombrePro' => $mostrarNombre
+        );
+
+        $this->load->view('templates/header', $info_modal);
+        $this->load->view('Proveedor/modal', $info_modal);
+    }
+             
+    
+    public function inactivar($id) {
+   
+        $inactivoProveedor = $this->Proveedor_model->inactivarProveedor($id);
+        if ($inactivoProveedor) {
+             echo "<script type='text/javascript'>"
+            . "alert('Proveedor inactivado correctamente ');"
+                    . "location.href = 'http://localhost:82/ImmerPRO_CI/proveedor';"
+                    . "</script>";
+        }
+  
+
 
 }
+
+        }

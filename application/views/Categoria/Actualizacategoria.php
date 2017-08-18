@@ -35,7 +35,7 @@ if ($this->session->flashdata('correcto')): ?>
 
                 <textarea id="detallecat" class="form-control" name="txtdetalle" required="" ><?=$Detalles?></textarea>
                     <div class="btn-group">
-                        <input type="submit" name="submit"   class="btn btn-deep-orange waves-effect bg-primary" required=""  />
+                        <button type="submit" class="btn btn-orange waves-effect orange" name="btnEditaProducto"><i class='fa fa-edit'> Actualizar Categoria</i></button>
 
      
     </div>

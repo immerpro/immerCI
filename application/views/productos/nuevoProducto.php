@@ -49,14 +49,24 @@
                               class="form-control" 
                               data-parsley-required="true" 
                               data-parsley-trigger="keyup" 
-                              data-parsley-required-message="el campo no debe estar vacio">
+                              data-parsley-required-message="el campo no debe estar vacio"
+                              >
                                   <?= set_value('DescripcionProducto') ?>         
                     </textarea><br />  
                 </div>
 
 
                 <div class="md-form">
-                    <input type="text" name="CodigoDeBarras" id="CodigoDeBarras" class="form-control" required data-parsley-type="number" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" value="<?= set_value('CodigoDeBarras') ?>"/><br />        
+                    <input type="text" 
+                           name="CodigoDeBarras" 
+                           id="CodigoDeBarras" 
+                           class="form-control" 
+                           required 
+                           data-parsley-type="number" 
+                           data-parsley-trigger="keyup" 
+                           data-parsley-required-message="el campo no debe estar vacio"
+
+                           value="<?= set_value('CodigoDeBarras') ?>"/><br />        
                     <label for="CodigoDeBarras" >Codigo de barras</label>
                 </div>
                 <div class="md-form">
@@ -64,29 +74,36 @@
                     <input type="text" name="nbCantidadPro" class="form-control"  id="cantidad" required data-parsley-type="number" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" data-parsley-number-message="debe ingresar numeros" value="<?= set_value('nbCantidadPro') ?>"/><br /> 
 
                 </div>
-
+                <label for="categoria" >Categoria</label>
+                <select name="categoria" class="form-control md-form"  id="categoria" required data-parsley-trigger="keyup">
+                    <option value="">seleccione una categorìa</option>
+                    <?php foreach ($categorias_select as $itemCategoria): ?>
+                        <option value="<?= $itemCategoria['idCategoria'] ?>"><?= $itemCategoria['NombreCategoria'] ?></option>
+                    <?php endforeach; ?>    
+                </select>
 
             </div>    
             <div class="col-6">
                 <div class="md-form">
                     <label for="minimo" >minimoStock</label>
-                    <input type="number" name="minimoStock"  id="minimo" class="form-control" required="required" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" value="<?= set_value('minimoStock') ?>"/><br />
+                    <input type="text" name="minimoStock"  id="minimo" class="form-control"  required data-parsley-type="number"  data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" value="<?= set_value('minimoStock') ?>" /><br />
 
                 </div>
                 <div class="md-form">
                     <label for="Maximo" >MaximoStock</label>
-                    <input type="number" name="MaximoStock" id="Maximo" class="form-control" required="required" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" value="<?= set_value('MaximoStock') ?>"/><br />
+                    <input type="text" name="MaximoStock" id="Maximo" class="form-control" required data-parsley-type="number" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" value="<?= set_value('MaximoStock') ?>" data-parsley-gt="#minimo" data-parsley-gt-message="debe ser mayor que el minimo"/><br />
 
                 </div>
                 <div class="md-form">
                     <label for="exist" >Existencias</label>
-                    <input type="text" name="Existencias"  id="exist" class="form-control" required data-parsley-type="integer" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" data-parsley-integer-message="debe ingresar numeros" value="<?= set_value('Existencias') ?>"/><br />
+                    <input type="text" name="Existencias"  id="exist" class="form-control" required data-parsley-type="number" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" data-parsley-integer-message="debe ingresar numeros" value="<?= set_value('Existencias') ?>"/><br />
                 </div>
+
                 <label for="subcategoria" >Subcategoria</label>
-                <select name="subcategoria" class="form-control" required="required" >
-                    <?php foreach ($subcategorias as $itemSubcategoria): ?>
-                        <option value="<?php echo $itemSubcategoria['idSubcategoria'] ?>"><?php echo $itemSubcategoria['NombreSubcategoria'] ?></option>
-                    <?php endforeach; ?>    
+                <select name="subcategoria" id="subcatego" class="form-control" required data-parsley-trigger="keyup" >
+
+                    <option value="">selecciona la subcategoria</option>
+
                 </select>
             </div>    
 
@@ -100,18 +117,18 @@
 
             </div>
             <div class="col-6">
-                <label for="fvencimiento" >Fecha de vencimiento</label>
-                <input type="date" name="fvencimiento" class="form-control" data-parsley-required="true" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" value="<?= set_value('fvencimiento') ?>"/><br /> 
+                <label for="date-picker-example" >Fecha de vencimiento</label>
+                <input type="date" id="date-picker-example" name="fvencimiento" class="form-control datepicker" data-parsley-required="true" data-parsley-trigger="keyup" data-parsley-required-message="el campo no debe estar vacio" value="<?= set_value('fvencimiento') ?>"/><br /> 
 
             </div>
 
         </div>
 
         <div class="flex-center">
-            <button type="submit" class="btn btn-orange waves-effect orange" name="btnNuevoProducto" ><i class='fa fa-send'> Crear Producto</i></button>
+            <button type="submit" class="btn btn-orange waves-effect orange" name="btnNuevoProducto" data-toggle="modal" data-target="#envio" ><i class='fa fa-send'> Crear Producto</i></button>
 
         </div>
-
+              
 
         <?php echo form_close(); ?>
 
@@ -119,7 +136,8 @@
 
     <script>
         $(document).ready(function () {
-            $('form').parsley();
+        $('.datepicker').pickadate();
+        $('form').parsley();
         });
     </script>
 </div>

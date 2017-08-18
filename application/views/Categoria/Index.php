@@ -6,8 +6,8 @@
     <tr>
         <th>Nombre Categoria</th>
         <th>Detalles</th>
-         <th>Actions Subcategoria</th>
-            <th>Actions Categoria</th>
+         <th>Acciones Subcategoria</th>
+            <th>Acciones Categoria</th>
     </tr>
     <tr>
         <?php foreach ($categorias as $categoria_item): ?>

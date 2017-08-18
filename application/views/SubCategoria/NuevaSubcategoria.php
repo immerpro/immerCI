@@ -24,7 +24,7 @@
                 </td>
             </tr>
             
-            <tr><td><button type="submit" class="btn btn-success">Crear</button></td></tr>
+            <tr><td> <button type="submit" class="btn btn-orange waves-effect orange" ><i class='fa fa-send'> Crear SubCategoria</i></button></td></tr>
         </table>
     </div>
  <?php echo form_close(); ?>

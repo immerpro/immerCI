@@ -14,9 +14,9 @@
 <?php if ($this->session->flashdata('incorrecto')): ?>
     <div class=" alert alert-danger" ><?php echo $this->session->flashdata('incorrecto'); ?> </div> 
 <?php endif; ?>
+<div style="height: 5vh"></div>
 
-
-        <p class=" h1-responsive display-4 green-text flex-center" >PROVEEDOR</p>
+        <p class=" h1-responsive display-4 orange-text flex-center" >PROVEEDOR</p>
         <br><br>
         <?php echo form_open('proveedor/NuevoProveedor'); ?>
           <div class="row">
@@ -66,7 +66,7 @@
         </div>
 
         <div class="flex-center">
-            <button type="submit" class="btn btn-success btn-lg ">Crear Proveedor</button>
+            <button type="submit" class="btn btn-orange waves-effect orange"> <i class='fa fa-send'></i>Crear Proveedor</button>
 
 
         </div>

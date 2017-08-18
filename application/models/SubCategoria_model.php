@@ -7,16 +7,16 @@ class SubCategoria_model extends CI_Model {
         $query = $this->db->get('subcategoria');
         return $query->result_array();
     }
-    //ingresar Subcategorias
-    public function ingressarSubCategoria() {
-        $this->load->helper('url');
-        $Subcategoria = array(
-        'NombreSubCategoria' => $this->input->post('NombreSubCategoria'),
-        'FechaSubCategoria' => date("Y-m-d H:i:s") 
-        );
-        
-        return $this->db->insert('subcategoria', $Subcategoria);
-    }
+//    //ingresar Subcategorias
+//    public function ingressarSubCategoria() {
+//        $this->load->helper('url');
+//        $Subcategoria = array(
+//        'NombreSubCategoria' => $this->input->post('NombreSubCategoria'),
+//        'FechaSubCategoria' => date("Y-m-d H:i:s") 
+//        );
+//        
+//        return $this->db->insert('subcategoria', $Subcategoria);
+//    }
     
     public function InsertSubcategoria($NombreSubcategoria){
         
@@ -62,6 +62,16 @@ class SubCategoria_model extends CI_Model {
     public function Actualizasubcategoria($IdSubCategoria, $datasub){
         $this->db->where('idSubcategoria', $IdSubCategoria);
         $this->db->update('subcategoria', $datasub);
+        
+    }
+    
+    public function inactivarSubcategoria($idSub){
+        
+        $this->db->set('detallesSub', "Subcategoria eliminada");
+        $this->db->where('idSubcategoria', $idSub);
+
+        $inactivasub = $this->db->update('subcategoria');
+        return $inactivasub;
         
     }
 }

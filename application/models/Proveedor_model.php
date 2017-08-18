@@ -19,6 +19,7 @@ class Proveedor_model extends CI_Model {
 
     
    public function TraerDatos(){
+      $this->db->where('Estados_idEstados', 1);
       $this->db->select('*');
       $this->db->from('proveedor');
       $query= $this->db->get();
@@ -40,5 +41,27 @@ class Proveedor_model extends CI_Model {
         $this->db->where('idProveedor', $idProveedor);
         $this->db->update('proveedor', $data);
     }
+    
+        
+        public function obtener_nombre_proveedor($idProveedor) {
+        $this->db->select('NombreProveedor');
+        $this->db->from('proveedor');
+        $this->db->where('idProveedor', $idProveedor);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return FALSE;
+        }
+    }
+    
+    
+      public function inactivarProveedor($idProveedor) {
+        $this->db->set('Estados_idEstados', 2, FALSE);
+        $this->db->where('idProveedor', $idProveedor);
+        $inactiva = $this->db->update('proveedor');
+        return $inactiva;
+    }
+
        
 }

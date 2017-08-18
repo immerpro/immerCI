@@ -1,8 +1,7 @@
 <div style="height: 5vh"></div>
-<?php echo form_open('Subcategoria/actualizarsub'); ?>  
-<input type="hidden" name="codigoCategoria" value="<?= $codcategoria ?>">
-<input type="hidden" name="idsubcategoria" value="<?= $idSub ?>">
-<h1 class="h1 green-text text-center">subcategoria de <?= $nombrecategoria ?></h1>
+<?php echo form_open('Subcategoria/actualizarsub/'.$idSub); ?>  
+<input type="hidden" name="hdcodigoCategoria" value="<?=$codCategoria?>">
+<h1 class="h1 green-text text-center">subcategoria a Actualizar</h1>
 <div class="flex-center">
     <table>
         <tr>
@@ -25,7 +24,7 @@
             </td>
         </tr>
 
-        <tr><td><button type="submit" class="btn btn-success">Actualizar</button></td></tr>
+        <tr><td><button type="submit" class="btn btn-orange waves-effect orange" name="btnEditaProducto"><i class='fa fa-edit'> Actualizar Subcategoria</i></button></td></tr>
     </table>
 </div>
 <?php echo form_close(); ?>

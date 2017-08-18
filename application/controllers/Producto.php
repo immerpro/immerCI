@@ -10,42 +10,41 @@ class Producto extends CI_Controller {
 
     // metodo que ejecuta la vista principal
     public function index($numPag = 0) {
+        $idProducto = $this->uri->segment(3);
+
         $busqueda = $this->input->post('txtbuscar');
         $filtro = $this->input->post('ddlfiltro');
         if ($busqueda == "") {
-           //creamos la salida del html a la vista con ob_get_contents
-        //que lo que hace es imprimir el html
-        ob_start();
-        $this->pagina(0);
-        $initial_content = ob_get_contents();
-        ob_end_clean();
+            //creamos la salida del html a la vista con ob_get_contents
+            //que lo que hace es imprimir el html
+            ob_start();
+            $this->pagina(0);
+            $initial_content = ob_get_contents();
+            ob_end_clean();
 
-        //asignamos $initial_content al array data para pasarlo a la vista
-        //y así poder mostrar tanto los links como la tabla
-        // datos para inactivar un producto
+            //asignamos $initial_content al array data para pasarlo a la vista
+            //y así poder mostrar tanto los links como la tabla
+            // datos para inactivar un producto
 //        $idProducto = $this->uri->segment(3);
-        $data = array(
-            'div1' => " <div id='pagina'>",
-            'table' => $initial_content,
-            'titulo' => "producto"
-        ); 
-         $this->load->view('templates/header', $data);
-        $this->load->view('templates/menuAdmin');
-        $this->load->view('productos/index', $data);
-        $this->load->view('templates/footer');
-            
+            $data = array(
+                'div1' => " <div id='pagina'>",
+                'table' => $initial_content,
+                'titulo' => "producto",
+            );
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/menuAdmin');
+            $this->load->view('productos/index', $data);
+            $this->load->view('templates/footer');
         } else {
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/menuAdmin');
-        $this->load->view('productos/index', $data);
-        $this->load->view('templates/footer');
-            
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/menuAdmin');
+            $this->load->view('productos/index', $data);
+            $this->load->view('templates/footer');
         }
 
-       
+
 //
 //        // cargar la vista
-       
     }
 
     public function pagina($numPag = 0) {
@@ -55,33 +54,33 @@ class Producto extends CI_Controller {
 
         $config['div'] = '#pagina'; //asignamos un id al contenedor general
 
-        $config['anchor_class'] = 'page-link'; //asignamos una clase a los links para maquetar
+        $config['anchor_class'] = 'btn btn-dark-green btn-rounded'; //asignamos una clase a los links para maquetar
 
-        $config['show_count'] = false; //en true queremos ver Viendo 1 a 10 de 52
+        $config['show_count'] = FALSE; //en true queremos ver Viendo 1 a 10 de 52
 
         $config['total_rows'] = $this->productos_model->cantidad_filas();
 
-        $config['per_page'] = 4; //-->número de productos por página
+        $config['per_page'] = 5; //-->número de productos por página
 
-        $config['num_links'] = 3; //-->número de links visibles
+        $config['num_links'] = 4; //-->número de links visibles
 
         $config['first_link'] = '&lsaquo; Primera'; //->configuramos 
         $config['last_link'] = 'Última &rsaquo;'; //--->y siguiente
-        $config['full_tag_open'] = '<nav aria-label="Page navigation"><ul class="pagination">';
+        $config['full_tag_open'] = '<nav aria-label="Page navigation" class="flex-center"><ul class="pagination">';
         $config['full_tag_close'] = '</ul></nav>';
-        $config['first_link'] = false;
-        $config['last_link'] = false;
+        $config['first_link'] = FALSE;
+        $config['last_link'] = FALSE;
         $config['first_tag_open'] = '<li>';
         $config['first_tag_close'] = '</li>';
-        $config['prev_link'] = '&laquo';
-        $config['prev_tag_open'] = '<li class="prev">';
+        $config['prev_link'] = '&lt;';
+        $config['prev_tag_open'] = '<li class="previous">';
         $config['prev_tag_close'] = '</li>';
-        $config['next_link'] = '&raquo';
-        $config['next_tag_open'] = '<li>';
+        $config['next_link'] = '&gt;';
+        $config['next_tag_open'] = '<li class="next">';
         $config['next_tag_close'] = '</li>';
         $config['last_tag_open'] = '<li>';
         $config['last_tag_close'] = '</li>';
-        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_open'] = '<li class="active"><a href="#" class="btn btn-orange">';
         $config['cur_tag_close'] = '</a></li>';
         $config['num_tag_open'] = '<li>';
         $config['num_tag_close'] = '</li>';
@@ -90,8 +89,8 @@ class Producto extends CI_Controller {
 
         //creamos la cabecera de nuestra tabla con los campos que necesitemos
         $template = array(
-            'table_open' => '<table class="table table-striped table-bordered table-hover table-responsive">',
-            'thead_open' => '<thead class="thead-inverse">',
+            'table_open' => '<table class="table table-striped table-bordered table-hover">',
+            'thead_open' => '<thead >',
             'thead_close' => '</thead>',
             'heading_row_start' => '<tr>',
             'heading_row_end' => '</tr>',
@@ -111,11 +110,11 @@ class Producto extends CI_Controller {
         );
 
         $this->table->set_template($template);
-        $this->table->set_heading('Descripción Producto', 'Nombre Producto', 'Minimo Stock', 'Maximo Stock', 'Existencias', 'Acciones');
+        $this->table->set_heading('Producto', 'Descripción', 'Minimo Stock', 'Maximo Stock', 'Existencias', 'Acciones');
         foreach ($this->productos_model->paginarProducto($config['per_page'], $numPag)as $productos_item) {
             $this->table->add_row(
-                    $productos_item['DescripcionProducto'], $productos_item['NombreProducto'], $productos_item['minimoStock'], $productos_item['MaximoStock'], $productos_item['Existencias'], '<a href=' . base_url() . 'producto/editar/' . $productos_item['idProducto'] . '><button class="btn btn-tw btn btn-info"><strong>Modificar</strong></button></a>'
-                    . nbs(3) . '<a href=' . base_url() . 'producto/inactivar/' . $productos_item['idProducto'] . ' class="btn btn-danger inactivar_producto">Inactivar</a>');
+                    $productos_item['NombreProducto'], $productos_item['DescripcionProducto'], $productos_item['minimoStock'], $productos_item['MaximoStock'], $productos_item['Existencias'], 'Modificar <a class="teal-text" href=' . base_url() . 'producto/editar/' . $productos_item['idProducto'] . '><i class="fa fa-pencil "></i></a>'
+                    . nbs(3) . 'Inactivar <a class="red-text" href=' . base_url() . 'producto/modal/' . $productos_item['idProducto'] . '><i class="fa fa-times" ></i></a>');
         }
         //cargamos la paginación con los links
         $html = $this->table->generate() .
@@ -129,6 +128,7 @@ class Producto extends CI_Controller {
 
         $titulo['titulo'] = " nuevo producto";
         $data['subcategorias'] = $this->subcategoria_model->obtenerSubCategorias();
+        $data['categorias_select'] = $this->categoria_model->traerCategorias();
         // cargar el helper de manejo de formularios
         $this->load->helper('form');
         // cargar libreria para validar formularios
@@ -140,8 +140,8 @@ class Producto extends CI_Controller {
         $this->form_validation->set_rules('txtNombProd', ' nombre Producto', 'required|is_unique[producto.NombreProducto]');
         $this->form_validation->set_rules('CodigoDeBarras', 'Codigo de barras', 'required|integer|min_length[13]|is_unique[producto.CodigoDeBarras]');
         $this->form_validation->set_rules('minimoStock', 'minimo Stock', 'required|integer');
-        $this->form_validation->set_rules('MaximoStock', 'maximo Stock', 'required|integer');
-        $this->form_validation->set_rules('Existencias', 'existencias', 'required|integer');
+        $this->form_validation->set_rules('MaximoStock', 'maximo Stock', 'required|integer|greater_than[' . $this->input->post('minimoStock') . ']');
+        $this->form_validation->set_rules('Existencias', 'existencias', 'required|integer|less_than[' . $this->input->post('MaximoStock') . ']');
 
         // validaciones para el detalle de producto 
         $this->form_validation->set_rules('nbCantidadPro', 'Cantidad', 'required|numeric');
@@ -155,6 +155,8 @@ class Producto extends CI_Controller {
         $this->form_validation->set_message('integer', 'Ingrese numeros en el campo %s ');
         $this->form_validation->set_message('is_unique', 'la información de %s ya existe por favor ingrese nueva información ');
         $this->form_validation->set_message('min_length', 'El campo %s debe tener 13 numeros');
+        $this->form_validation->set_message('greater_than', 'El campo %s debe ser mayor al minimo stock');
+        $this->form_validation->set_message('less_than', 'El campo %s debe ser menor al maximo stock');
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('templates/header', $titulo);
             $this->load->view('templates/menuAdmin');
@@ -180,7 +182,7 @@ class Producto extends CI_Controller {
                 //Sesion de una sola ejecución
                 $this->session->set_flashdata('correcto', 'producto creado correctamente');
             } else {
-                $this->session->set_flashdata('incorrecto', ' El producto no  esta  creado');
+                $this->session->set_flashdata('incorrecto', 'El producto no  esta  creado');
             }
 
             $this->load->view('templates/header', $titulo);
@@ -193,6 +195,8 @@ class Producto extends CI_Controller {
 // metodo que ejecuta la vista de edicion de productos
     public function editar() {
         $dato['titulo'] = " Editar producto";
+//        $data['subcategorias'] = $this->subcategoria_model->obtenerSubCategorias();
+
         $idProducto = $this->uri->segment(3);
         $obtenerProducto = $this->productos_model->obtener_productos_a_modificar($idProducto);
 
@@ -208,7 +212,11 @@ class Producto extends CI_Controller {
                 $minimoStock = $fila->minimoStock;
                 $MaximoStock = $fila->MaximoStock;
                 $Existencias = $fila->Existencias;
+                $subcategoria = $fila->Subcategoria_idSubcategoria;
             }
+//           $nombC = $this->productos_model->obtener_nombreCategoria($subcategoria);
+//            var_dump($nombC);
+
             $data = array(
                 'id' => $idProducto,
                 'descripcion' => $DescripcionProducto,
@@ -217,7 +225,9 @@ class Producto extends CI_Controller {
                 'minStock' => $minimoStock,
                 'maxStock' => $MaximoStock,
                 'exist' => $Existencias,
-                'subcategorias' => $this->subcategoria_model->obtenerSubCategorias()
+                'idsub' => $subcategoria,
+                'categorias_select' => $this->categoria_model->traerCategorias(),
+                'nombreSub' => $this->productos_model->obtener_nombreSubcategoria($subcategoria),
             );
         } else {
             $data = '';
@@ -249,35 +259,51 @@ class Producto extends CI_Controller {
     public function modal() {
         $idProducto = $this->uri->segment(3);
         $mostrarNombre = $this->productos_model->obtener_nombre($idProducto);
-        foreach ($mostrarNombre->result() as $fila) {
-            $nombreProducto = $fila->NombreProducto;
-        }
+
         $info_modal = array(
             'id' => $idProducto,
             'titulo_h1' => "producto a inactivar",
             'titulo' => "modal",
-            'nombrePro' => $nombreProducto
+            'nombrePro' => $mostrarNombre
         );
 
         $this->load->view('templates/header', $info_modal);
         $this->load->view('productos/modal', $info_modal);
     }
 
-    // inactiva un producto
+//     inactiva un producto
     public function inactivar($id) {
-        /* $mostrarNombre = $this->productos_model->obtener_nombre($id);
-          foreach ($mostrarNombre->result() as $fila) {
-          $nombreProducto = $fila->NombreProducto;
-          }
-          $info_modal = array(
-          'id' => $id,
-          'titulo_h1' => "producto a inactivar",
-          'titulo' => "modal",
-          'nombrePro' => $nombreProducto
-          );
-         */
+//        $mostrarNombre = $this->productos_model->obtener_nombre($id);
+//        
+//        $info_modal = array(
+//            'id' => $id,
+//            'titulo_h1' => "producto a inactivar",
+//            'titulo' => "modal",
+//            'nombrePro' => $mostrarNombre
+//        );
+
         $inactivoProducto = $this->productos_model->inactivarProducto($id);
-        redirect('productos');
+        if ($inactivoProducto) {
+            echo "<script type='text/javascript'>"
+            . "alert('producto inactivado correctamente ');"
+            . "location.href = 'http://localhost:82/ImmerPRO_CI/producto';"
+            . "</script>";
+        }
+    }
+
+    public function asociarCategoria_a_subcategoria() {
+        $options = "";
+        if ($this->input->post('categoria')) {
+            $categoria = $this->input->post('categoria');
+            $subcategorias = $this->categoria_model->asociarSubcategoria($categoria);
+            foreach ($subcategorias as $valSub) {
+                ?>
+                <option value="<?= $valSub->idSubcategoria ?>"><?= $valSub->NombreSubcategoria ?></option>
+                <?php
+            }
+        } else {
+            $options = "<option value='0'>no hay subcategorias asociadas a la categoria seleccionada</option>";
+        }
     }
 
 }

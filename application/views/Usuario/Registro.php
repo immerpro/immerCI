@@ -1,3 +1,4 @@
+<div style="height: 5vh"></div>
 <h1 class=" text-center orange-text">Registro</h1>
  <div class="row">
             <div class="col-6 ">
@@ -60,8 +61,10 @@
                 <input type="password" id="password" class="form-control" name="txtpassword">
             <label for="password" class="">Contraseña</label>
             </div>
+            <div style="height: 5vh"></div>
+            <button type="submit" class="btn btn-orange waves-effect orange" name="btnRegistro" > <i class='fa fa-send'> </i> Registrar</button>
         </td>
-        <td><button type="submit" class="btn btn-success">Ingresar</button></td>
+        <td></td>
 
     </tr>
    

@@ -23,7 +23,7 @@ class Usuario extends CI_Controller {
                 $data = array('token' => $this->token(), 
                     'titulo' => 'login',
                     'slogan'=>'¡¡Hazme parte de ti!!',
-                    'color_slogan'=>'orange');
+                    'color_slogan'=>'green-text');
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/menu_usuario', $data);
                 $this->load->view('Usuario/Login');
@@ -38,7 +38,7 @@ class Usuario extends CI_Controller {
                 break;
             default:
                 $data = array('titulo' => 'login', 'slogan'=>'¡¡Hazme parte de ti!!',
-                    'color_slogan'=>'orange');
+                    'color_slogan'=>'green-text');
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/menu_usuario', $data);
                 $this->load->view('Usuario/Login');
@@ -52,21 +52,21 @@ class Usuario extends CI_Controller {
         if ($this->input->post('token') && $this->input->post('token') == $this->session->userdata('token')) {
 
             $this->form_validation->set_rules('txtusuario', 'usuario', 'required|trim|min_length[5]|max_length[15]xss_clean');
-            $this->form_validation->set_rules('txtpassword', 'password', 'required|trim|min_length[5]|max_length[12]xss_clean');
+//            $this->form_validation->set_rules('txtpassword', 'password', 'required|trim|min_length[5]|max_length[12]xss_clean');
             if ($this->form_validation->run() === FALSE) {
                 $this->Login();
             } else {
                 $nombreusuario = $this->input->post('txtusuario');
-                $claveusuario = $this->input->post('txtpassword');
-                $logueo = md5($this->usuario_model->iniciarSesion($nombreusuario, $claveusuario));
-                if ($logueo === true) {
-                    $infouser = array(
-                        'esta_logueado' => true,
-                        'idUsuario' => $logueo->idUsuario,
-                        'rol' => $logueo->RolUsuario_idRolUsuario,
-                        'usuario' => $logueo->NombreUsuario,
-                    );
-                    $this->session->set_userdata($infouser);
+//               $claveusuario = sha1($this->input->post('txtpassword'));
+                $logueo = $this->usuario_model->iniciarSesionXUsuario($nombreusuario);
+                if ($logueo != FALSE) {
+//                    $infouser = array(
+//                        'esta_logueado' => true,
+//                        'idUsuario' => $logueo->idUsuario,
+//                        'rol' => $logueo->RolUsuario_idRolUsuario,
+//                        'usuario' => $logueo->NombreUsuario,
+//                    );
+//                    $this->session->set_userdata($infouser);
                     $this->Login();
                 }
             }
@@ -91,7 +91,7 @@ class Usuario extends CI_Controller {
         $data = array( 
                     'titulo' => 'Registro',
                     'slogan'=>'¡¡Hazme parte de ti!!',
-                    'color_slogan'=>'orange');
+                    'color_slogan'=>'green-text');
         //clase para validar en codeigneiter 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('txtnombrecompleto', 'Nombre', 'required|alpha_numeric_spaces');

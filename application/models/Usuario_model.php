@@ -37,5 +37,19 @@ class Usuario_model extends CI_Model{
         
         
     }
+    public function iniciarSesionXUsuario($usuario) {
+        
+        $this->db->where('NombreUsuario', $usuario);
+         $consulta = $this->db->get('usuario');
+         if ($consulta->num_rows() > 0) {
+             return $consulta;
+         }  else {
+             $this->session->set_flashdata('usuario_mal', 'no se pudo ingresar');
+             redirect(base_url().'usuario/login','refresh');
+             
+         }
+        
+        
+    }
     
 }
